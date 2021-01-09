@@ -16,12 +16,12 @@ print(df_confirmed.head())
 
 # Confirmed Cases Global by Date
 N = len(df_confirmed.columns)
-fig = plt.figure(figsize=(8,10), dpi=100) # blank canvas
+fig = plt.figure(figsize=(8,10)) # blank canvas
 ax = fig.gca()
 sns.barplot(data=df_confirmed, y=df_confirmed.index, x='1/2/21', orient='h')
 plt.yticks(range(N), rotation=90) # add loads of ticks
 plt.grid()
-ax.margins(x=0)
+ax.margins(y=0)
 fig.canvas.draw()
 tl = ax.get_yticklabels()
 maxsize = max([t.get_window_extent().width for t in tl])
