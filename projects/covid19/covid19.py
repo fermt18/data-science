@@ -15,31 +15,21 @@ print(df_confirmed.info())
 print(df_confirmed.head())
 
 # Confirmed Cases Global by Date
-#fig = plt.figure(figsize=(50,8), dpi=100)
-#sns.barplot(data=df_confirmed, y=df_confirmed.index, x='1/2/21', orient='h')
-#plt.xticks(rotation=90) # todo: specify columns as date data type
-#plt.tick_params(axis='y', which='major', labelsize=7)
-#plt.show()
-
-N = 150
-data = np.linspace(0, N, N)
-
-plt.plot(data)
-
-plt.xticks(range(N)) # add loads of ticks
+N = len(df_confirmed.columns)
+fig = plt.figure(figsize=(8,10), dpi=100) # blank canvas
+ax = fig.gca()
+sns.barplot(data=df_confirmed, y=df_confirmed.index, x='1/2/21', orient='h')
+plt.yticks(range(N), rotation=90) # add loads of ticks
 plt.grid()
-
-plt.gca().margins(x=0)
-plt.gcf().canvas.draw()
-tl = plt.gca().get_xticklabels()
+ax.margins(x=0)
+fig.canvas.draw()
+tl = ax.get_yticklabels()
 maxsize = max([t.get_window_extent().width for t in tl])
 m = 0.2 # inch margin
-s = maxsize/plt.gcf().dpi*N+2*m
-margin = m/plt.gcf().get_size_inches()[0]
-
-plt.gcf().subplots_adjust(left=margin, right=1.-margin)
-plt.gcf().set_size_inches(s, plt.gcf().get_size_inches()[1])
-
+s = maxsize/fig.dpi*N+2*m
+margin = m/fig.get_size_inches()[0]
+fig.subplots_adjust(left=margin, right=1.-margin)
+fig.set_size_inches(s, fig.get_size_inches()[1])
 plt.savefig(__file__+".png")
 plt.show()
 
