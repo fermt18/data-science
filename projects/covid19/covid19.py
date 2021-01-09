@@ -19,18 +19,18 @@ N = len(df_confirmed.columns)
 fig = plt.figure(figsize=(8,10)) # blank canvas
 ax = fig.gca()
 sns.barplot(data=df_confirmed, y=df_confirmed.index, x='1/2/21', orient='h')
-plt.yticks(range(N), rotation=90) # add loads of ticks
+plt.yticks(range(N), rotation=0) # add loads of ticks
 plt.grid()
 ax.margins(y=0)
 fig.canvas.draw()
 tl = ax.get_yticklabels()
-maxsize = max([t.get_window_extent().width for t in tl])
+maxsize = max([t.get_window_extent().height for t in tl])
 m = 0.2 # inch margin
 s = maxsize/fig.dpi*N+2*m
-margin = m/fig.get_size_inches()[0]
+margin = m/fig.get_size_inches()[1]
 fig.subplots_adjust(left=margin, right=1.-margin)
-fig.set_size_inches(s, fig.get_size_inches()[1])
-plt.savefig(__file__+".png")
+fig.set_size_inches(s, fig.get_size_inches()[0])
+#plt.savefig(__file__+".png")
 plt.show()
 
 
