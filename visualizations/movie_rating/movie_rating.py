@@ -6,12 +6,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 def print_message(message):
     print(message)
     print()
 
-fandango = pd.read_csv('auxfiles/capstone_fandango_scrape.csv')
+base_path = os.getcwd() + '/visualizations'
+fandango = pd.read_csv(base_path + '/movie_rating/data/fandango_scrape.csv')
 print_message(fandango.head())
 print_message(fandango.describe())
 print_message("It is seen that STARS mean tend to be a bit higher than RATING")
@@ -62,7 +64,7 @@ print_message(fan_reviewed[fan_reviewed['STARS_DIFF'] == 1])
 
 
 # Comparison of Fandango ratings to other sites
-all_sites = pd.read_csv('auxfiles/capstone_all_sites_scores.csv')
+all_sites = pd.read_csv(base_path + '/movie_rating/data/all_sites_scores.csv')
 print_message("Explore All sites CSV")
 print_message(all_sites.head())
 
